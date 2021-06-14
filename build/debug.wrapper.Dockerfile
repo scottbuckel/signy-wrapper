@@ -19,7 +19,7 @@ FROM golang:1.14.4-alpine3.12
 COPY --from=notary-binary /.notary /.notary
 COPY --from=notary-binary /user/group /user/passwd /etc/
 COPY --from=notary-binary /go/bin/notary /notary/notary
-COPY --from=wrapper-binary /go/bin/notary-wrapper /notary/notary-wrapper
+COPY --from=wrapper-binary /go/bin/signy-wrapper /notary/signy-wrapper
 COPY --from=wrapper-binary /etc/ssl /etc/ssl
 
 
@@ -48,5 +48,7 @@ USER notary:notary
 EXPOSE 4445
 
 WORKDIR /notary
+
+RUN cat /etc/certs/notary/notary-wrapper.crt
 
 ENTRYPOINT [ "/notary/signy-wrapper" ]

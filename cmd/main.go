@@ -53,8 +53,7 @@ func main() {
 	logrus.Info(fmt.Sprintf("notaryRootCa: %s", string(notaryRootCa)))
 	logrus.Info(fmt.Sprintf("notaryCertPath: %s", string(notaryCertPath)))
 	logrus.Info(fmt.Sprintf("notaryCliPath: %s", string(notaryCliPath)))
-	//logrus.Info(fmt.Sprintf("mode: %s", info.Mode()))
-	logrus.Info(fmt.Sprintf("mode: %s", info))
+	logrus.Info(fmt.Sprintf("mode: %s", info.Mode()))
 
 	// check if notary binary exists
 	if _, err := os.Stat(notaryCliPath); os.IsNotExist(err) {
