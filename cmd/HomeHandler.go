@@ -5,7 +5,7 @@ import (
 	"net/http"
 	"runtime"
 
-	"github.com/k8s-gadgets/notary-wrapper/version"
+	"github.com/scottbuckel/signy-wrapper/version"
 )
 
 type Info struct {
