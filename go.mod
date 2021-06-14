@@ -1,4 +1,4 @@
-module github.com/k8s-gadgets/notary-wrapper
+module github.com/scottbuckel/signy-wrapper
 
 go 1.14
 

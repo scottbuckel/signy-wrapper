@@ -10,9 +10,9 @@ NOTARY_BRANCH=master
 NOTARYPKG=github.com/theupdateframework/notary
 
 NOTARY_WRAPPER_BRANCH=master
-NOTARY_WRAPPER_PKG=github.com/k8s-gadgets/notary-wrapper
+NOTARY_WRAPPER_PKG=github.com/scottbuckel/signy-wrapper
 
-REGISTRY=dgeiger
+REGISTRY=sebbyii
 NOTARY_WRAPPER_TAG=0.0.1
 
 # build notary-wrapper binary
