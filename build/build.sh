@@ -1,8 +1,8 @@
 #!/bin/bash
 
-# BUILD_MODE="debugBuild"
+# BUILD_MODE="minimalBuild"
 
-BUILD_MODE="minimalBuild"
+BUILD_MODE="debugBuild"
 # DOCKERFILE=alpine.Dockerfile
 DOCKERFILE=minimal.Dockerfile
 
@@ -18,6 +18,9 @@ NOTARY_WRAPPER_TAG=0.0.1
 # build notary-wrapper binary
 if [ $BUILD_MODE == "debugBuild" ]; then
 
+
+    echo "RUNNING DEBUG BUILD"
+    export DOCKER_BUILDKIT=0
     docker build \
         --build-arg NOTARY_BRANCH=$NOTARY_BRANCH \
         --build-arg NOTARYPKG=$NOTARYPKG \

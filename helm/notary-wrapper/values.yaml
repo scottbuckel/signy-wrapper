@@ -4,7 +4,7 @@ imagePullPolicy: Always
 
 wrapper:
   deploy:
-    image: dgeiger/notary-wrapper:0.0.1
+    image: sebbyii/signy-wrapper:0.0.1
     replicaCount: 1
   svc:
     targetPort: 4445
