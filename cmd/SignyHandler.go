@@ -30,6 +30,7 @@ func SignyHandler(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(200)
 		json.NewEncoder(w).Encode(SignyReturn)
 	} else {
+		SignyReturn.ImageName = keys[0]
 		min := 1
 		max := 100
 		SignyReturn.RandomNumber = rand.Intn(max-min) + min
