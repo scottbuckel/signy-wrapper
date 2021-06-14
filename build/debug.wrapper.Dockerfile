@@ -9,7 +9,7 @@ RUN git clone -b $NOTARY_WRAPPER_BRANCH https://${NOTARY_WRAPPER_PKG}.git /go/sr
 WORKDIR /go/src/${NOTARY_WRAPPER_PKG}
 
 RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build \
-    -ldflags "-w -s -X ${NOTARY_WRAPPER_PKG}/version.GitCommit=`git rev-parse --short HEAD` -X ${NOTARY_WRAPPER_PKG}/version.NotaryWrapperVersion=`cat NOTARY_WRAPPER_VERSION`" -o /go/bin/notary-wrapper ${NOTARY_WRAPPER_PKG}/cmd
+    -ldflags "-w -s -X ${NOTARY_WRAPPER_PKG}/version.GitCommit=`git rev-parse --short HEAD` -X ${NOTARY_WRAPPER_PKG}/version.NotaryWrapperVersion=`cat NOTARY_WRAPPER_VERSION`" -o /go/bin/signy-wrapper ${NOTARY_WRAPPER_PKG}/cmd
 
 
 
