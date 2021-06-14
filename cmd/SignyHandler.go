@@ -2,28 +2,31 @@ package main
 
 import (
 	"encoding/json"
+	"math/rand"
 	"net/http"
-	"runtime"
-
-	"github.com/scottbuckel/signy-wrapper/version"
 )
 
 type SignyReturn struct {
-	NotaryWrapperVersion string `json:"NotaryWrapperVersion"`
-	GitCommit            string `json:"GitCommit"`
-	RuntimeVersion       string `json:"runtimeVersion"`
-	SignyValidation      string `json:"SignyValidation"`
+	SignyValidation string `json:"SignyValidation"`
+	FailureReason   string `json:"FailureReason"`
+	RandomNumber    int    `json:"RandomNumber"`
 }
 
 func SignyHandler(w http.ResponseWriter, r *http.Request) {
 
 	var SignyReturn SignyReturn
 
-	SignyReturn.NotaryWrapperVersion = version.NotaryWrapperVersion
-	SignyReturn.GitCommit = version.GitCommit
-	SignyReturn.RuntimeVersion = runtime.Version()
+	SignyReturn.FailureReason = ""
+	SignyReturn.SignyValidation = "success"
 
-	SignyReturn.SignyValidation = "failure"
+	min := 1
+	max := 30
+	SignyReturn.RandomNumber = rand.Intn(max-min) + min
+
+	if SignyReturn.RandomNumber%2 == 0 {
+		SignyReturn.FailureReason = "Number was Even, Evens are failures"
+		SignyReturn.SignyValidation = "failure"
+	}
 
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
