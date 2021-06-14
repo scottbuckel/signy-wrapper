@@ -32,7 +32,7 @@ if [ $BUILD_MODE == "debugBuild" ]; then
         --build-arg NOTARY_WRAPPER_BRANCH=$NOTARY_WRAPPER_BRANCH \
         --build-arg NOTARY_WRAPPER_PKG=$NOTARY_WRAPPER_PKG \
         -f ./debug.wrapper.Dockerfile \
-        -t $REGISTRY/notary-wrapper:$NOTARY_WRAPPER_TAG \
+        -t $REGISTRY/signy-wrapper:$NOTARY_WRAPPER_TAG \
         --no-cache .
 
 elif [ $BUILD_MODE == "minimalBuild" ]; then
