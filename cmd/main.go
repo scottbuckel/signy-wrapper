@@ -9,7 +9,7 @@ import (
 	"runtime"
 
 	"github.com/gorilla/mux"
-	"github.com/k8s-gadgets/notary-wrapper/version"
+	"github.com/k8s-gadgets/signy-wrapper/version"
 	"github.com/sirupsen/logrus"
 )
 
