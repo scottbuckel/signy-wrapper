@@ -10,6 +10,7 @@ type SignyReturn struct {
 	SignyValidation string `json:"SignyValidation"`
 	FailureReason   string `json:"FailureReason"`
 	RandomNumber    int    `json:"RandomNumber"`
+	ImageName       string `json:"ImageName"`
 }
 
 func SignyHandler(w http.ResponseWriter, r *http.Request) {
@@ -17,18 +18,33 @@ func SignyHandler(w http.ResponseWriter, r *http.Request) {
 	var SignyReturn SignyReturn
 
 	SignyReturn.FailureReason = ""
-	SignyReturn.SignyValidation = "success"
+	SignyReturn.SignyValidation = "failure"
 
-	min := 1
-	max := 30
-	SignyReturn.RandomNumber = rand.Intn(max-min) + min
+	keys, ok := r.URL.Query()["image"]
 
-	if SignyReturn.RandomNumber%2 == 0 {
-		SignyReturn.FailureReason = "Number was Even, Evens are failures"
+	if !ok || len(keys[0]) < 1 {
+		SignyReturn.FailureReason = "No Image Supplied"
 		SignyReturn.SignyValidation = "failure"
+
+		w.Header().Set("Content-Type", "application/json")
+		w.WriteHeader(200)
+		json.NewEncoder(w).Encode(SignyReturn)
+	} else {
+		min := 1
+		max := 100
+		SignyReturn.RandomNumber = rand.Intn(max-min) + min
+
+		if SignyReturn.RandomNumber%2 == 0 {
+			SignyReturn.FailureReason = "Number was Even, Evens are failures"
+			SignyReturn.SignyValidation = "failure"
+		} else {
+			SignyReturn.FailureReason = ""
+			SignyReturn.SignyValidation = "success"
+		}
+
+		w.Header().Set("Content-Type", "application/json")
+		w.WriteHeader(200)
+		json.NewEncoder(w).Encode(SignyReturn)
 	}
 
-	w.Header().Set("Content-Type", "application/json")
-	w.WriteHeader(200)
-	json.NewEncoder(w).Encode(SignyReturn)
 }
