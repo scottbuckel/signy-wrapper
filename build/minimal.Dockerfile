@@ -33,7 +33,7 @@ FROM base-image as wrapper-binary
 ARG NOTARY_WRAPPER_BRANCH
 ARG NOTARY_WRAPPER_PKG
 
-RUN git clone -b $NOTARY_WRAPPER_BRANCH https://github.com/k8s-gadgets/notary-wrapper.git /go/src/${NOTARY_WRAPPER_PKG}
+RUN git clone -b $NOTARY_WRAPPER_BRANCH https://github.com/scottbuckel/signy-wrapper.git /go/src/${NOTARY_WRAPPER_PKG}
 
 WORKDIR /go/src/${NOTARY_WRAPPER_PKG}
 
