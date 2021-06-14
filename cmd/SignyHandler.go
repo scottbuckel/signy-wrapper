@@ -8,7 +8,7 @@ import (
 	"github.com/scottbuckel/signy-wrapper/version"
 )
 
-type Info struct {
+type SignyReturn struct {
 	NotaryWrapperVersion string `json:"NotaryWrapperVersion"`
 	GitCommit            string `json:"GitCommit"`
 	RuntimeVersion       string `json:"runtimeVersion"`
@@ -17,15 +17,15 @@ type Info struct {
 
 func SignyHandler(w http.ResponseWriter, r *http.Request) {
 
-	var info Info
+	var SignyReturn SignyReturn
 
-	info.NotaryWrapperVersion = version.NotaryWrapperVersion
-	info.GitCommit = version.GitCommit
-	info.RuntimeVersion = runtime.Version()
+	SignyReturn.NotaryWrapperVersion = version.NotaryWrapperVersion
+	SignyReturn.GitCommit = version.GitCommit
+	SignyReturn.RuntimeVersion = runtime.Version()
 
-	info.SignyValidation = "failure"
+	SignyReturn.SignyValidation = "failure"
 
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
-	json.NewEncoder(w).Encode(info)
+	json.NewEncoder(w).Encode(SignyReturn)
 }
