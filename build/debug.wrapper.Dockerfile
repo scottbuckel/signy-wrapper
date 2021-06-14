@@ -28,8 +28,6 @@ COPY --from=wrapper-binary /etc/ssl /etc/ssl
 COPY notary-wrapper.crt  /etc/certs/notary/notary-wrapper.crt
 
 COPY notary-wrapper.key  /etc/certs/notary/notary-wrapper.key
-RUN ls /etc/certs/notary/
-RUN echo "WERE HERE"
 RUN chown -R notary:notary /etc/certs/notary
 RUN chown -R notary:notary /notary
 RUN chown -R notary:notary /.notary
@@ -48,7 +46,5 @@ USER notary:notary
 EXPOSE 4445
 
 WORKDIR /notary
-
-RUN cat /etc/certs/notary/notary-wrapper.crt
 
 ENTRYPOINT [ "/notary/signy-wrapper" ]

@@ -12,6 +12,7 @@ type Info struct {
 	NotaryWrapperVersion string `json:"NotaryWrapperVersion"`
 	GitCommit            string `json:"GitCommit"`
 	RuntimeVersion       string `json:"runtimeVersion"`
+	SignyValidation      string `json:"SignyValidation"`
 }
 
 func HomeHandler(w http.ResponseWriter, r *http.Request) {
