@@ -40,9 +40,9 @@ elif [ $BUILD_MODE == "minimalBuild" ]; then
         --build-arg NOTARY_WRAPPER_BRANCH=$NOTARY_WRAPPER_BRANCH \
         --build-arg NOTARY_WRAPPER_PKG=$NOTARY_WRAPPER_PKG \
         -f ./$DOCKERFILE \
-        -t $REGISTRY/notary-wrapper:$NOTARY_WRAPPER_TAG \
+        -t $REGISTRY/signy-wrapper:$NOTARY_WRAPPER_TAG \
         --no-cache .
 fi
 
 # push notary-wrapper image
-docker push $REGISTRY/notary-wrapper:$NOTARY_WRAPPER_TAG
+docker push $REGISTRY/signy-wrapper:$NOTARY_WRAPPER_TAG
