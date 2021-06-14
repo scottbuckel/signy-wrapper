@@ -79,6 +79,7 @@ func main() {
 	router.HandleFunc("/list", ListHandler).Methods("POST")
 	router.HandleFunc("/lookup", LookupHandler).Methods("POST")
 	router.HandleFunc("/verify", VerifyHandler).Methods("POST")
+	router.HandleFunc("/signy", SignyHandler).Methods("POST")
 	// router.HandleFunc("/healthz", healthzHandler).Methods("GET")
 
 	srv := &http.Server{

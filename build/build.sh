@@ -1,5 +1,5 @@
 #!/bin/bash
-
+git commit -am 'testing changes' && git push
 # BUILD_MODE="minimalBuild"
 
 BUILD_MODE="debugBuild"
@@ -49,3 +49,4 @@ fi
 
 # push notary-wrapper image
 docker push $REGISTRY/signy-wrapper:$NOTARY_WRAPPER_TAG
+docker run -p 4445:4445 $REGISTRY/signy-wrapper:$NOTARY_WRAPPER_TAG
