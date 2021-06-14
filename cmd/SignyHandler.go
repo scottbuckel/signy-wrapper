@@ -2,18 +2,20 @@ package main
 
 import (
 	"encoding/json"
-	"io/ioutil"
 	"net/http"
 	"runtime"
 
 	"github.com/scottbuckel/signy-wrapper/version"
 )
 
-func SignyHandler(w http.ResponseWriter, r *http.Request) {
+type Info struct {
+	NotaryWrapperVersion string `json:"NotaryWrapperVersion"`
+	GitCommit            string `json:"GitCommit"`
+	RuntimeVersion       string `json:"runtimeVersion"`
+	SignyValidation      string `json:"SignyValidation"`
+}
 
-	reqBody, _ := ioutil.ReadAll(r.Body)
-	var requestGun RequestGun
-	json.Unmarshal(reqBody, &requestGun)
+func SignyHandler(w http.ResponseWriter, r *http.Request) {
 
 	var info Info
 
@@ -21,7 +23,7 @@ func SignyHandler(w http.ResponseWriter, r *http.Request) {
 	info.GitCommit = version.GitCommit
 	info.RuntimeVersion = runtime.Version()
 
-	info.SignyValidation = "success"
+	info.SignyValidation = "failure"
 
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
